@@ -1,5 +1,5 @@
-import Categories from "./components/categories"
-import Products from "./components/products"
+import Categories from "../components/categories";
+import Products from "../components/products";
 
 async function getCategory() {
   const res = await fetch(`http://127.0.0.1:8000/api/category/`, {
@@ -20,7 +20,7 @@ export default async function Page() {
   const products = getProduct()
 
   const [cat, pro] = await Promise.all([categories, products])
-  // console.log(cat, pro)
+  console.log(cat, pro)
 
   return (
     <>
