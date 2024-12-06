@@ -1,5 +1,7 @@
+import Baner from "./components/Baner"
 import Categories from "./components/categories"
-import Products from "./components/products"
+import Products from "./components/Products"
+import RootLayout from "./layout"
 
 async function getCategory() {
   const res = await fetch(`http://127.0.0.1:8000/api/category/`, {
@@ -7,7 +9,7 @@ async function getCategory() {
   })
   return res.json()
 }
- 
+
 async function getProduct() {
   const res = await fetch(`http://127.0.0.1:8000/api/product/`, {
     cache: 'force-cache',
@@ -20,26 +22,22 @@ export default async function Page() {
   const products = getProduct()
 
   const [cat, pro] = await Promise.all([categories, products])
-  // console.log(cat, pro)
 
   return (
-    <>
-      <header className="header">
-        <div className="container">
-          <a className="logo">VitaPro8</a>
+    <div className="container direction-column">
 
-          <nav className="nav">
-            <a>Cart</a>
-            <a>Sign Up</a>
-            <a>Log in</a>
-          </nav>
-        </div>
-      </header>
-      <div className="container">
-        <Categories categories={cat}/>
-        <Products products={pro}/>
-      </div>
-    </>
+      <Baner title="Ofertas del mes"></Baner>
+
+      <Categories categories={cat}/>
+
+      <Products products={pro}/>
+
+      <style>
+        {`
+        `}
+      </style>
+
+    </div>
   );
 }
 
